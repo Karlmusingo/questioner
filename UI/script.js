@@ -1,5 +1,5 @@
 
-document.getElementById('delete').style.display = "block";
+document.getElementById('create').style.display = "block";
 function operation(evt, oper) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");

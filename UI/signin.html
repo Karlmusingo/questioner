@@ -2,8 +2,41 @@
 <html>
 <head>
 	<title>Log in page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>Log in page</h1>
-</body>
-</html>
+
+	<form method="POST">
+		<fieldset>
+			<div >
+				<div >
+					<h2 >Login</h2>
+				</div>
+				<table class="table">
+					<tr><div>
+						<td><label> Username:</label><br/>
+							<input type="text" class="input" required name='username' placeholder="Username" /> </td>
+						</div></tr>
+
+						<tr><div>
+							<td><label> Password:</label><br/>
+								<input type="password" class="input" required name='password' placeholder="Password" /> </td>
+							</div></tr>
+
+
+
+						</table>
+						<div class="register">
+
+							<button  type="submit" name="signin" value="signin">Sign in</button> 
+							<a href="signup.html">Sign up here</a> 
+						</div>
+
+					</div>
+				</fieldset>
+			</form>
+
+		</body>
+		</html>

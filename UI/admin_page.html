@@ -2,8 +2,84 @@
 <html>
 <head>
 	<title>admin page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>admin page</h1>
+	<h1>admin page</h1>
+
+	<div id="tab">
+		<ul>
+			<li ><button class="tablinks active" onclick="operation(event, 'create')">Create a Meetup</button></li>
+			<li ><button class="tablinks" onclick="operation(event, 'delete')">Delete a Meetup</button></li>
+
+		</ul>
+		
+	</div>
+
+	<div id="create" class="tabcontent">
+		<form method="POST" class="form">
+			<div>
+				<label>Topic:</label><br/>
+				<input type="type" name="topic" placeholder="Topic">
+			</div>
+			<div>
+				<label>Location:</label><br/>
+				<input type="text" name="location" placeholder="Location">
+			</div>
+			<div>
+				<label>Date of the meetup :</label><br/>
+				<input type="date" name="happeningOn">
+			</div>
+			<div>
+				<button type="submit" name="save">Save</button>
+			</div>
+		</form>
+
+	</div>
+	<div id="delete" class="tabcontent">
+		<form method="POST" class="form">
+			<input type="text" name="search" placeholder="Search for a meetup"/>
+		</form>
+		<h2>Meetups</h2>
+		<div class="well">
+			<table>
+				<tr>
+					<td>
+						<strong>ALCinRwanda Meetup 2.0.</strong><i>December 8,2018</i>
+						<div>
+							<p>University of Rwanda - College of Science and Technology</p>
+
+						</div>
+					</td>
+					<td>
+						<button class="btn-small">Delete Meetup</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<br>
+		</div>
+		<div class="well">
+			<table>
+				<tr>
+					<td>
+						<strong>ALCinRwanda Meetup 2.0.</strong><i>December 8,2018</i>
+						<div>
+							<p>University of Rwanda - College of Science and Technology</p>
+
+						</div>
+					</td>
+					<td>
+						<button class="btn-small">Delete Meetup</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+	<script src="script.js" type="text/javascript"></script>
 </body>
 </html>

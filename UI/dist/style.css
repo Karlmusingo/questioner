@@ -95,7 +95,7 @@ a{
 	padding-bottom: 20px;
 }
 
-li {
+.list-inline {
 	display: inline-block;
 }
 
@@ -146,11 +146,35 @@ li {
 i{
 	margin-left: 25%;
 	font-size: 15px;
+	color: red;
+}
+
+#dropdown_comments{
+	width: 4%;
+	cursor: pointer;
+}
+
+.comments{
+	display: none;
+}
+
+
+.date{
+	color: red;
+}
+
+.text-small{
+	font-size: 15px;
+	width: 80%
+}
+
+.text-huge{
+	font-size: 25px;
 }
 
 .well{
 	background-color: #ddd;
-	padding: 10px;
+	padding: 500px;
 	width: 80%;
 }
 
@@ -162,3 +186,121 @@ i{
 	padding-right: 1%;
 }
 
+.question {
+	position: relative;
+	margin-left: 1%;
+	width: 100%;
+	display: block;
+}
+
+.question button{
+	position: static;
+	width: 60%;
+	margin-bottom: 0%;
+}
+.question span{
+	font-size: 90%;
+	padding-left: 9%;
+	margin-right: 15%;
+	margin-top: -50px;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	z-index: 1;
+	/*display: contents;*/
+}
+.question table{
+	width: 95%;
+}
+
+.question img{
+	width: 35%;
+	margin-bottom: -5px;
+}
+
+.question p{
+	font-size: 70%;
+}
+
+.question p i{
+	color: blue;
+	font-family: monospace;
+}
+
+.margin{
+	margin-left: 8%;
+	padding: 10px;
+}
+hr{
+	border: 1px solid #000;
+}
+.margin input{
+	margin-left: 0%; 
+	margin-bottom: 5px; 
+	width: 100%;
+	height: 25px;
+}
+
+.margin button{
+	position: static;
+	align-self: center;
+	margin-left: 30%;
+	margin-top: 10px;
+}
+
+.label{
+	color: #ffffff;
+	border: 1px solid rgba(12,11,13,.3);
+	border-radius: 4px;
+	background-color: #449d44;
+	font-size: 20px;
+	margin-left: 2%;
+	padding: 5px;
+	position: relative;
+	width: 30%;
+	vertical-align: super;
+}
+
+.label img{
+	width: 25%;
+	margin-bottom: -5px;
+}
+
+.name{
+	font-size: 200%;
+}
+
+.card{
+	padding: 15px;
+}
+.number-post{
+	background: #5e9fe8;
+	color: #fff;
+	width: 300px;
+	padding: 15px;
+	text-align: center;
+
+}
+
+.number-post span{
+	border: 1px solid #fff;
+	margin : 50px;
+	padding: 5px;
+}
+
+.number-comment{
+	background:#449d44 ;
+	color: #fff;
+	width: 300px;
+	text-align: center;
+
+}
+
+.number-comment span{
+	border: 1px solid #fff;
+	margin : 100px;
+	padding: 5px;
+}
+
+.div-margin{
+	margin-bottom: 20px;
+}

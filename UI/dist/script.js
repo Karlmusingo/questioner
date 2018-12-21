@@ -1,5 +1,11 @@
+	
 
-// document.getElementById('create').style.display = "block";
+	if(document.getElementById('create') !== null){
+		document.getElementById('create').style.display = "block";
+
+	}
+	
+
 function operation(evt, oper) {
 	var i, tabcontent, tablinks;
 	tabcontent = document.getElementsByClassName("tabcontent");

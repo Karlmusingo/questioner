@@ -7,36 +7,31 @@
 	<link rel="stylesheet" type="text/css" href="dist/style.css">
 </head>
 <body>
-
+	
 	<form method="POST">
 		<fieldset>
-			<div >
+			<div id="container-form">
 				<div >
 					<h2 >Login</h2>
 				</div>
-				<table class="table">
-					<tr><div>
-						<td><label> Username:</label><br/>
-							<input type="text" class="input" required name='username' placeholder="Username" /> </td>
-						</div></tr>
-
-						<tr><div>
-							<td><label> Password:</label><br/>
-								<input type="password" class="input" required name='password' placeholder="Password" /> </td>
-							</div></tr>
-
-
-
-						</table>
-						<div class="register">
-
-							<a href="user_profile.html"><button  type="submit" name="signin" value="signin">Sign in</button> </a>
-							<a href="signup.html">Sign up here</a> 
-						</div>
-
-					</div>
-				</fieldset>
-			</form>
-
-		</body>
-		</html>
+				<div>
+					<label> <div class="label-input">Username:</div></label>
+					<input type="text" class="input" required name='username' placeholder="Username" /> 
+				</div>
+				
+				<div>
+					<label> <div class="label-input">Password:</div></label>
+					<input type="password" class="input" required name='password' placeholder="Password" /> 
+				</div>
+				
+				<div class="register">
+					<a href="user_profile.html"><button  type="submit" name="signin" value="signin">Sign in</button> </a>
+					<a href="signup.html">Sign up here</a> 
+				</div>
+				
+			</div>
+		</fieldset>
+	</form>
+	
+</body>
+</html>

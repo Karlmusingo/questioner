@@ -296,7 +296,10 @@ i{
 	margin-left: 25%;
 	padding-right: 1%;
 }
-
+.btn-small img{
+  width:25px;
+  height: 25px;
+}
 .question {
 	position: relative;
 	margin-left: 1%;

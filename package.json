@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha test/test --compilers js:babel-core/register --timeout 12000 --exit",
+    "test": "mocha ./server/test/test js:babel-core/register --timeout 12000 --exit",
     "dev": "node_modules/.bin/nodemon app.js --exec babel-node --",
     "start": "node app.js"
   },

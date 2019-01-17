@@ -2,38 +2,45 @@ const db = require('../models/db.js');
 
 module.exports = {
 	create:(req,res)=>{
-		if(!req.body.title){
+		
+		if(!req.body.title || req.body.title.trim() == ''){
 			return res.status(400).send({
 				status: 400,
-				error: 'the title property is required'
+				error: 'the title property is required >>'
 			});
-		} else if (!req.body.body) {
+		} else if (!req.body.body || req.body.body.trim() == '') {
 			return res.status(400).send({
 				status: 400,
-				error: 'the body property is required'
+				error: 'the body property is required >>'
 			});
-		} else if (!req.body.user) {
+		} else if (!req.body.user || req.body.user.trim() == '') {
 			return res.status(400).send({
 				status: 400,
-				error: 'the user property is required'
+				error: 'the user property is required >>'
 			});
-		} else if(req.body.user > db.users.length){
+		} else if(isNaN(req.body.user)){
+			return res.status(400).send({
+				status: 400,
+				error: 'invalid user >>'
+			});
+
+		} else if(!(db.users.find(u => u.id === parseInt(req.body.user))))  {
 			return res.status(404).send({
 				status: 404,
-				error: 'the user does not exist'
+				error: 'the user  is not found'
 			});
-		} else if(req.params.id > db.meetups.length){
+		} else if(!(db.meetups.find(m => m.id === parseInt(req.params.id)))){
 			return res.status(404).send({
 				status: 404,
-				error: 'the meetup does not exist'
+				error: 'the meetup does not exist >>>'
 			});
 		}
 
 		const question = {
 			id: db.questions.length + 1,
 			createdOn : new Date(),
-			title: req.body.title,
-			body: req.body.body,
+			title: req.body.title.trim(),
+			body: req.body.body.trim(),
 			upvotes: 0,
 			downvotes: 0,
 			user: parseInt(req.body.user),

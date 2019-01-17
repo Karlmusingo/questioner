@@ -10,8 +10,8 @@ const rsvpCtrl = require("../controllers/rsvpController");
 //meetup's routes
 router.get("/meetups/",meetupCtrl.getAll);
 router.post('/meetups', meetupCtrl.create);
+router.get('/meetups/upcoming/', meetupCtrl.getUpcomingMeetups);
 router.get('/meetups/:id', meetupCtrl.getById);
-router.get('/meetups/upcoming/all', meetupCtrl.getUpcomingMeetups);
 
 
 //question's routes

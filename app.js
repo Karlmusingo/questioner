@@ -1,10 +1,10 @@
 // Set up the express app
 var express = require('express');
 var bodyParser = require('body-parser');
-var db = require('./Server/models/db');
+var db = require('./server/models/db');
 
 const app = express();
-const router = require('./Server/routes/routes');
+const router = require('./server/routes/routes');
 
 // Parse incoming requests data
 app.use(bodyParser.json());

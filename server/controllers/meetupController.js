@@ -19,28 +19,40 @@ module.exports = {
 	},
 
 	create: (req, res) => {
-		if(!req.body.location) {
+		if(!req.body.location || req.body.location.trim() === '') {
 			return res.status(400).send({
 				status: 400,
 				error: 'location property is required for the meetup'
 			});
-		} else if(!req.body.topic) {
+		} else if(!req.body.topic || req.body.topic.trim() === '') {
 			return res.status(400).send({
 				status: 400,
 				error: 'topic property is required for the meetup'
 			});
-		}else if(!req.body.happeningOn){
+		}else if(!req.body.happeningOn || req.body.happeningOn.trim() === ''){
 			return res.status(400).send({
 				status: 400,
 				error: 'happeningOn property is required for the meetup'
 			});
+		}else if((new Date(req.body.happeningOn.trim())) <= (new Date())) {
+			return res.status(400).send({
+				status: 400,
+				error: 'happeningOn must come after today'
+			});
+		}else if(isNaN(new Date(req.body.happeningOn.trim()))){
+			return res.status(400).send({
+				status: 400,
+				error: 'happeningOn is not a valide Date'
+			});
 		}
+
 		const meetup = {
 			id: db.meetups.length + 1,
 			createdOn: new Date(),
-			location: req.body.location,
-			topic: req.body.topic,
-			happeningOn: new Date(req.body.happeningOn)
+			location: req.body.location.trim(),
+			topic: req.body.topic.trim(),
+			happeningOn: new Date(req.body.happeningOn),
+			tags: req.body.tags
 		}
 		db.meetups.push(meetup);
 		return res.status(201).send({

@@ -2,23 +2,33 @@ const db = require('../models/db.js');
 
 module.exports = {
 	create:(req,res)=>{
-		const id = parseInt(req.params.id, 10);
+		const id = parseInt(req.params.id);
 		let flag = false;
 
-		if(!req.body.user){
+		if(isNaN(req.params.id)){
+			return res.status(400).send({
+				status: 400,
+				error: 'Invalid meetup'
+			});
+		} if(!req.body.user || req.body.user.trim() === ''){
 			return res.status(400).send({
 				status: 400,
 				error: 'the user property is required in order to send an RSVP'
 			});
-		} else if(req.body.user > db.users.length){
+		} else if(!(db.users.find(u => u.id === parseInt(req.body.user))))  {
 			return res.status(400).send({
 				status: 404,
 				error: 'the user  is not found'
 			});
-		}else if (!req.body.status) {
+		}else if (!req.body.status || req.body.user.trim() === '') {
 			return res.status(400).send({
 				status: 400,
 				error: 'the status property is required in order to send an RSVP'
+			});
+		}else if(!(req.body.status === 'yes' || req.body.status === 'no' || req.body.status === 'maybe' )){
+			return res.status(400).send({
+				status: 400,
+				error: 'invalid value of status'
 			});
 		}
 

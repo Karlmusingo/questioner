@@ -198,7 +198,7 @@ describe('meetups', () => {
           user: 1
         };
         chai.request(app)
-        .post('/api/v1/meetups/:id/questions')
+        .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
           res.should.have.status(400);
@@ -215,7 +215,7 @@ describe('meetups', () => {
           user: 1
         };
         chai.request(app)
-        .post('/api/v1/meetups/:id/questions')
+        .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
           res.should.have.status(400);
@@ -232,7 +232,7 @@ describe('meetups', () => {
           user: 1
         };
         chai.request(app)
-        .post('/api/v1/meetups/:id/questions')
+        .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
           res.should.have.status(400);
@@ -249,7 +249,7 @@ describe('meetups', () => {
           user: 'How to do'
         };
         chai.request(app)
-        .post('/api/v1/meetups/:id/questions')
+        .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
           res.should.have.status(400);
@@ -283,7 +283,7 @@ describe('meetups', () => {
           body:'I need to know how to host a api on Heroku'
         };
         chai.request(app)
-        .post('/api/v1/meetups/'+ 10 +'/questions')
+        .post('/api/v1/meetups/10/questions')
         .send(question)
         .end((err, res) => {
           res.should.have.status(500);
@@ -300,7 +300,7 @@ describe('meetups', () => {
           user: 1
         };
         chai.request(app)
-        .post('/api/v1/meetups/:id/questions')
+        .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
           res.should.have.status(500);

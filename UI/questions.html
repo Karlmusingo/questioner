@@ -1,112 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-	<title>User Profile</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="dist/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <title>Questioner</title>
+  <link rel="stylesheet" href="./dist/css/views.css">
 </head>
 <body>
-	
-	<div class="nav-bar-profile">
-		
-		<div class="profile">
-			Karl MUSINGO
-		</div>
-		
-		<div class="menu">
-			<ul>
-				
-				<li class="brand"><b>Questioner</b></li> 
-				<li><a href="user_profile.html">Profile</a></a> </li>
-				<li><a href="user_question.html">Meetups</a> </li>
-			</ul>
-		</div>
-		<!-- <ul>
-			<li><span>Karl MUSINGO</span></li>
-			<li><a href="user_question.html"><button class="">See Meetups</button></a></li>
-		</ul> -->
-		
-		
-	</div>
-	
-	<br><br><br>
-	
-	<div class="margin card">
-		
-		<div class="number-post">
-			<div class="div-margin">Number of Questions Posted by Karl </div> <span>24</span>
-		</div>
-		<div class="number-comment">
-			<div class="div-margin">Number of Questions Commented by Karl </div> <span>34</span>
-		</div>
-	</div>
+  <header>
+    <div class="logo">
+      <h2>Questioner</h2>
+    </div>
+    <nav>
+      <ul>
+        <li>
+         <a href="user_profile.html">Profile</a>
+       </li>
+       <li>
+        <a href="meetups.html">Meetups</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<!--!-->
 
-	<div class="margin">
-		<h3 align="center"><u>Top questions for upcoming meetups</u></h3>
-		
-		<p></p>
-		<div class="well margin media">
-			
-			<div class="">
-				<strong class="text-huge">ALCinRwanda Meetup 1.0.</strong><i class="date">December 8, 2018</i>
-				
-				<p class="text-small"> <img src="img/pin.svg" alt=""> University of Rwanda - College of Science and Technology</p>
-				
-				<ul>
-					<li class="question">
-						
-								<div class="question-content"> 
-									<div>What is ALCinRwanda Meetup about? </div>
-									<div class="text-small">
-										These are the steps you ought to take to get ready to start building the project Steps Create a Pivotal Tracker Board Create a Github Repository, add a README, and clone it to your computer 
-									</div>
-								</div>
-								<div class="question-btn">
-									<ul>
-										<li>
-											<span class="label"><span>50 </span>  <img src="img/upvote.ico"></span>
-										</li>
-										<li>
-											<span class="label"><span>1 </span>  <img src="img/downvote.ico"></span>
-										</li>
-										<li>
-											<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
-										</li>
-									</ul>
-								</div>
-								
-							
-					</li>
-					<hr>
-					<li class="question">
-						<table>
-							<tr>
-								<td> 
-									<div>What is ALCinRwanda Meetup about? </div>
-									<div class="text-small">
-										These are the steps you ought to take to get ready to start building the project Steps Create a Pivotal Tracker Board Create a Github Repository, add a README, and clone it to your computer 
-									</div>
-								</td>
-								<td>
-									<span class="label"><span>43 </span>  <img src="img/upvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>1 </span>  <img src="img/downvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
-								</td>
-								
-							</tr>
-						</table>
-					</li>
-					<hr>
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-	
+
+
+<!--!-->
+<section class="m-question">
+  <div class="m-header">
+    <div class="m-title">
+      <h3>Alc in Rwanda Meetup 1.0<i>Saturday, March 25th, 2019</i></h3>
+    </div> 
+    <div class="location">
+      
+      <p> 
+        <img src="./img/icons/pin.svg">
+ 
+        <span>University of Kigali, Rwanda </span>
+      </p>
+    </div>
+  </div>
+  
+
+  <div class="m-img">
+    <img src="./img/meetup_img.jpeg">
+  </div>
+
+  <h3 align="center">Questions</h3>
+  <div class="questionAsk">
+    <div class="qtitle">
+      <h4>Why Javascript always?</h4>
+    </div>
+    <div class="qt">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure .
+      </p>
+    </div>
+    <div class="qtB">
+      <div class="lf">
+        <button type="button" name="button">
+          <img src="./img/icons/vote.svg" alt="">
+        </button>
+        <h5>120 votes</h5>
+      </div>
+      <div class="lf">
+        <button type="button" name="button">
+          <img src="./img/icons/downvote.svg" alt="">
+        </button>
+        <h5>120 downvotes</h5>
+      </div>
+      <div class="lf">
+        <a href="#">
+          <button type="button" name="button">
+            <img src="./img/icons/message.svg" alt="">
+          </button>
+          <h5>120 comments</h5>
+        </a>
+      </div>
+      <div class="lf">
+        <a href="#" id="comment">
+          <button type="button" name="button">
+            <img src="./img/icons/message.svg" alt="">
+          </button>
+          <h5>See comments</h5>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="questionAsk">
+    <div class="qtitle">
+      <h4>Why Javascript always?</h4>
+    </div>
+    <div class="qt">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure .
+      </p>
+    </div>
+    <div class="qtB">
+      <div class="lf">
+        <button type="button" name="button">
+          <img src="./img/icons/vote.svg" alt="">
+        </button>
+        <h5>120 votes</h5>
+      </div>
+      <div class="lf">
+        <button type="button" name="button">
+          <img src="./img/icons/downvote.svg" alt="">
+        </button>
+        <h5>120 downvotes</h5>
+      </div>
+      <div class="lf">
+        <a href="#">
+          <button type="button" name="button">
+            <img src="./img/icons/message.svg" alt="">
+          </button>
+          <h5>120 comments</h5>
+        </a>
+      </div>
+      <div class="lf">
+        <a href="#" id="comment">
+          <button type="button" name="button">
+            <img src="./img/icons/message.svg" alt="">
+          </button>
+          <h5>See comments</h5>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="questionAsk">
+    <div class="qtitle">
+      <h4>Why Javascript always?</h4>
+    </div>
+    <div class="qt">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure .
+      </p>
+    </div>
+    <div class="qtB">
+      <div class="lf">
+        <button type="button" name="button">
+          <img src="./img/icons/vote.svg" alt="">
+        </button>
+        <h5>120 votes</h5>
+      </div>
+      <div class="lf">
+        <button type="button" name="button">
+          <img src="./img/icons/downvote.svg" alt="">
+        </button>
+        <h5>120 downvotes</h5>
+      </div>
+      <div class="lf">
+        <a href="#">
+          <button type="button" name="button">
+            <img src="./img/icons/message.svg" alt="">
+          </button>
+          <h5>120 comments</h5>
+        </a>
+      </div>
+      <div class="lf">
+        <a href="#" id="comment">
+          <button type="button" name="button">
+            <img src="./img/icons/message.svg" alt="">
+          </button>
+          <h5>See comments</h5>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div>
+    <input type="text" name="" placeholder="Question's title">
+    <textarea placeholder="Question's body"></textarea>
+  </div>
+
+  <div class="post">
+    <button>POST</button>
+  </div>
+
+  </div>
+</section>
 </body>
 </html>

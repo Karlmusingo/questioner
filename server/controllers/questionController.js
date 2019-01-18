@@ -13,7 +13,7 @@ module.exports = {
 				status: 400,
 				error: 'the body property is required >>'
 			});
-		} else if (!req.body.user || req.body.user.trim() == '') {
+		} else if (!req.body.user) {
 			return res.status(400).send({
 				status: 400,
 				error: 'the user property is required >>'

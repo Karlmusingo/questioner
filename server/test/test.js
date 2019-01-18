@@ -269,9 +269,10 @@ describe('meetups', () => {
         .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
-          res.should.have.status(500);
-          // res.body.should.be.a('object');
-          // res.body.sould.have.property('error');
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.should.have.property('status').eql(404);
+          res.body.should.have.property('error');
           done();
         });
       });
@@ -286,9 +287,9 @@ describe('meetups', () => {
         .post('/api/v1/meetups/10/questions')
         .send(question)
         .end((err, res) => {
-          res.should.have.status(500);
-          // res.body.should.be.a('object');
-          // res.body.should.have.property('error');
+          res.should.have.status(404);
+          res.body.should.be.a('object');
+          res.body.should.have.property('error');
           done();
         });
       });
@@ -303,14 +304,14 @@ describe('meetups', () => {
         .post('/api/v1/meetups/1/questions')
         .send(question)
         .end((err, res) => {
-          res.should.have.status(500);
-          // res.body.status.should.be.eql(201);
-          // res.body.data.should.be.a('array');
-          // res.body.data.length.should.be.eql(1);
-          // res.body.data[0].should.have.property('user');
-          // res.body.data[0].should.have.property('meetup');
-          // res.body.data[0].should.have.property('title');
-          // res.body.data[0].should.have.property('body');
+          res.should.have.status(201);
+          res.body.status.should.be.eql(201);
+          res.body.data.should.be.a('array');
+          res.body.data.length.should.be.eql(1);
+          res.body.data[0].should.have.property('user');
+          res.body.data[0].should.have.property('meetup');
+          res.body.data[0].should.have.property('title');
+          res.body.data[0].should.have.property('body');
           done();
         });
       });

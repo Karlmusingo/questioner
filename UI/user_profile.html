@@ -4,114 +4,79 @@
 	<title>User Profile</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="dist/style.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/style.css">
 </head>
 <body>
 	
-	<div class="margin">
-		<span class="name">Karl MUSINGO</span><a href="user_question.html"><button class="">See Meetups</button></a>
+	<div class="nav-bar-profile">
+		
+		<div class="profile">
+			Karl MUSINGO
+		</div>
+		
+		<div class="menu">
+			<ul>
+				
+				<li class="brand"><b>Questioner</b></li> 
+				<li><a href="user_profile.html">Profile</a></a> </li>
+				<li><a href="meetups.html">Meetups</a> </li>
+			</ul>
+		</div>
+		<!-- <ul>
+			<li><span>Karl MUSINGO</span></li>
+			<li><a href="user_question.html"><button class="">See Meetups</button></a></li>
+		</ul> -->
+		
+		
 	</div>
 	
-	<div class="margin card" align="center">
-		<table>
-			<tr>
-				<td class="number-post"><div class="div-margin">Number of Questions Posted by Karl </div> <span>24</span></td>
-				<td class="number-comment"><div class="div-margin">Number of Questions Commented by Karl </div> <span>34</span></td>
-			</tr>
-		</table>
+	<br><br><br>
+	
+	<div class="margin card">
 		
-		
+		<div class="number-post">
+			<div class="div-margin">Number of Questions Posted by Karl </div> <span>24</span>
+		</div>
+		<div class="number-comment">
+			<div class="div-margin">Number of Questions Commented by Karl </div> <span>34</span>
+		</div>
 	</div>
+
 	<div class="margin">
 		<h3 align="center"><u>Top questions for upcoming meetups</u></h3>
-		<div class="well margin">
-
-			<div class="">
-				<strong class="text-huge">ALCinRwanda Meetup 1.0.</strong><i>December 8, 2018</i>
-
-				<p class="text-small">University of Rwanda - College of Science and Technology</p>
-
-				<ul>
-					<li class="question">
-						<table>
-							<tr>
-								<td> 
-									<div>What is ALCinRwanda Meetup about? </div>
-									<div class="text-small">
-										These are the steps you ought to take to get ready to start building the project Steps Create a Pivotal Tracker Board Create a Github Repository, add a README, and clone it to your computer 
-									</div>
-								</td>
-								<td>
-									<span class="label"><span>50 </span>  <img src="img/upvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>1 </span>  <img src="img/downvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
-								</td>
-
-							</tr>
-						</table>
-					</li>
-					<hr>
-					<li class="question">
-						<table>
-							<tr>
-								<td> 
-									<div>What is ALCinRwanda Meetup about? </div>
-									<div class="text-small">
-										These are the steps you ought to take to get ready to start building the project Steps Create a Pivotal Tracker Board Create a Github Repository, add a README, and clone it to your computer 
-									</div>
-								</td>
-								<td>
-									<span class="label"><span>43 </span>  <img src="img/upvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>1 </span>  <img src="img/downvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
-								</td>
-
-							</tr>
-						</table>
-					</li>
-					<hr>
-
-				</ul>
-			</div>
-		</div>
+		
 		<p></p>
-		<div class="well margin">
+		<div class="well margin media">
 			
 			<div class="">
-				<strong class="text-huge">ALCinRwanda Meetup 1.0.</strong><i>December 8, 2018</i>
-
-				<p class="text-small">University of Rwanda - College of Science and Technology</p>
-
+				<strong class="text-huge">ALCinRwanda Meetup 1.0.</strong><i class="date">December 8, 2018</i>
+				
+				<p class="text-small"> <img src="img/pin.svg" alt=""> University of Rwanda - College of Science and Technology</p>
+				
 				<ul>
 					<li class="question">
-						<table>
-							<tr>
-								<td> 
+						
+								<div class="question-content"> 
 									<div>What is ALCinRwanda Meetup about? </div>
 									<div class="text-small">
 										These are the steps you ought to take to get ready to start building the project Steps Create a Pivotal Tracker Board Create a Github Repository, add a README, and clone it to your computer 
 									</div>
-								</td>
-								<td>
-									<span class="label"><span>50 </span>  <img src="img/upvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>1 </span>  <img src="img/downvote.ico"></span>
-								</td>
-								<td>
-									<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
-								</td>
-
-							</tr>
-						</table>
+								</div>
+								<div class="question-btn">
+									<ul>
+										<li>
+											<span class="label"><span>50 </span>  <img src="img/upvote.ico"></span>
+										</li>
+										<li>
+											<span class="label"><span>1 </span>  <img src="img/downvote.ico"></span>
+										</li>
+										<li>
+											<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
+										</li>
+									</ul>
+								</div>
+								
+							
 					</li>
 					<hr>
 					<li class="question">
@@ -132,7 +97,7 @@
 								<td>
 									<span class="label"><span>5 </span> <img src="img/comment.ico"></span>
 								</td>
-
+								
 							</tr>
 						</table>
 					</li>
@@ -142,6 +107,6 @@
 			</div>
 		</div>
 	</div>
-
+	
 </body>
 </html>

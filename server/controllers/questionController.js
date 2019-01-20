@@ -1,4 +1,7 @@
-const db = require('../models/db.js');
+
+import questions from '../models/modelQuestions.js';
+import users from '../models/modelUsers';
+import meetups from '../models/modelMeetups';
 
 module.exports = {
 	create:(req,res)=>{
@@ -24,12 +27,12 @@ module.exports = {
 				error: 'invalid user >>'
 			});
 
-		} else if(!(db.users.find(u => u.id === parseInt(req.body.user))))  {
+		} else if(!(users.find(u => u.id === parseInt(req.body.user))))  {
 			return res.status(404).send({
 				status: 404,
 				error: 'the user  is not found'
 			});
-		} else if(!(db.meetups.find(m => m.id === parseInt(req.params.id)))){
+		} else if(!(meetups.find(m => m.id === parseInt(req.params.id)))){
 			return res.status(404).send({
 				status: 404,
 				error: 'the meetup does not exist >>>'
@@ -37,7 +40,7 @@ module.exports = {
 		}
 
 		const question = {
-			id: db.questions.length + 1,
+			id: questions.length + 1,
 			createdOn : new Date(),
 			title: req.body.title.trim(),
 			body: req.body.body.trim(),
@@ -47,7 +50,7 @@ module.exports = {
 			meetup: parseInt(req.params.id)
 		};
 
-		db.questions.push(question);
+		questions.push(question);
 
 		return res.status(201).send({
 			status: 201,
@@ -63,7 +66,7 @@ module.exports = {
 	upvote: (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		let flag = false;
-		db.questions.forEach(function (question) {
+		questions.forEach(function (question) {
 			if (question.id === id) {
 				question.upvotes += 1;
 				flag = true;
@@ -91,7 +94,7 @@ module.exports = {
 	downvote: (req, res) => {
 		const id = parseInt(req.params.id, 10);
 		let flag = false;
-		db.questions.forEach(function (question) {
+		questions.forEach(function (question) {
 			if (question.id === id) {
 				question.downvotes += 1;
 				flag = true;
@@ -120,11 +123,11 @@ module.exports = {
 
 		const id = parseInt(req.params.id, 10);
 		let flag = false;
-		db.meetups.forEach(function (meetup) {
+		meetups.forEach(function (meetup) {
 			if(meetup.id === id){
 				const data = [];
 				flag = true;
-				db.questions.forEach(function (question) {
+				questions.forEach(function (question) {
 
 					if(question.meetup === meetup.id){
 						data.push(question);
@@ -148,4 +151,4 @@ module.exports = {
 	}
 
 
-}
+};

@@ -12,7 +12,7 @@ Questioner helps the meetup organizer prioritize questions to be answered. Other
 # Installation
 ```
 
-git clone https://github.com/Inclet/questioner.git
+git clone https://github.com/Karlmusingo/questioner.git
 
 cd questioner
 

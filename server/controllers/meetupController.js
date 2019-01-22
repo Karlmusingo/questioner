@@ -39,13 +39,6 @@ module.exports = {
 			});
 		}
 
-		// if(errors){
-		// 	return res.status(400).send({
-		// 		status: 400,
-		// 		error: errors,
-		// 	});
-		// }
-
 		const meetup = {
 			id: meetups.length + 1,
 			createdOn: new Date(),

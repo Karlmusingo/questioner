@@ -4,6 +4,6 @@ const rsvpCtrl = require('../controllers/rsvpController');
 
 const router = Router();
 
-router.post('/meetups/:id/rsvps', rsvpCtrl.create);
+router.post('/:id/rsvps', rsvpCtrl.create);
 
 export default router;

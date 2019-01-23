@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>48/50</span>
+        <span class='fraction'>40/50</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.33% </span>
+        <span class="strong">76.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>28/30</span>
+        <span class='fraction'>23/30</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/10</span>
+        <span class='fraction'>8/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.83% </span>
+        <span class="strong">83.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>46/48</span>
+        <span class='fraction'>40/48</span>
       </div>
     </div>
     <p class="quiet">
@@ -221,32 +221,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -261,7 +261,7 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -288,7 +288,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -319,8 +319,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -368,19 +368,19 @@ module.exports = {
 				status: 400,
 				error: 'invalid user &gt;&gt;',
 			});
-		} if (!(users.find(u =&gt; u.id === parseInt(req.body.user, 10)))) {
-			return res.status(404).send({
+		} if (!(users.find(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >u =&gt; u.id === parseInt(req.body.user, 10)))) {</span></span>
+<span class="cstat-no" title="statement not covered" >			return res.status(404).send({</span>
 				status: 404,
 				error: 'the user  is not found',
 			});
-		} if (!(meetups.find(m =&gt; m.id === parseInt(req.params.id, 10)))) {
-			return res.status(404).send({
+		} <span class="cstat-no" title="statement not covered" >if (!(meetups.find(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >m =&gt; m.id === parseInt(req.params.id, 10)))) {</span></span></span>
+<span class="cstat-no" title="statement not covered" >			return res.status(404).send({</span>
 				status: 404,
 				error: 'the meetup does not exist &gt;&gt;&gt;',
 			});
 		}
 &nbsp;
-		const question = {
+		const question = <span class="cstat-no" title="statement not covered" >{</span>
 			id: questions.length + 1,
 			createdOn: new Date(),
 			title: req.body.title.trim(),
@@ -391,9 +391,9 @@ module.exports = {
 			meetup: parseInt(req.params.id, 10),
 		};
 &nbsp;
-		questions.push(question);
+<span class="cstat-no" title="statement not covered" >		questions.push(question);</span>
 &nbsp;
-		return res.status(201).send({
+<span class="cstat-no" title="statement not covered" >		return res.status(201).send({</span>
 			status: 201,
 			data: [{
 				user: question.user,
@@ -435,7 +435,7 @@ module.exports = {
 		const id = parseInt(req.params.id, 10);
 		let flag = false;
 		questions.forEach((question) =&gt; {
-			if (question.id === id) {
+			<span class="missing-if-branch" title="else path not taken" >E</span>if (question.id === id) {
 				question.downvotes += 1;
 				flag = true;
 				return res.status(200).send({
@@ -493,7 +493,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 22 2019 16:08:18 GMT+0200 (GMT+02:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 22 2019 23:24:16 GMT+0200 (GMT+02:00)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

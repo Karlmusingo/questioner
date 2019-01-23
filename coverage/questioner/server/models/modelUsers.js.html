@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">8.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>1/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">8.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>1/12</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -82,64 +82,64 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-tabs */
-const users = [
-	{
-		id: 1,
-		firstname: 'Karl',
-		lastname: 'MUSINGO',
-		othername: 'ZIRIMWABAGBO',
-		email: 'karlmusingo77@gmail.com',
-		phoneNumber: '+243 977 849 995',
-		username: 'karlmusingo',
-		password: '123456',
-		registered: '22/12/2018',
-		isAdmin: true,
-	},
-	{
-		id: 1,
-		firstname: 'Karl',
-		lastname: 'MUSINGO',
-		othername: 'ZIRIMWABAGBO',
-		email: 'karlmusingo@gmail.com',
-		phoneNumber: '+243 977 849 995',
-		username: 'karlmusingo',
-		password: '123456',
-		registered: '22/12/2018',
-		isAdmin: false,
-	},
-];
+import pool from '../config/connection';
 &nbsp;
-export default users;
+class User {
+	static create(user) {
+		const {
+			firstname, lastname, othername, email, phoneNumber, username, password, isadmin,
+		} = <span class="cstat-no" title="statement not covered" >user;</span>
+<span class="cstat-no" title="statement not covered" >		pool.query('INSERT INTO users (firstname, lastname, othername, email, phonenumber, username, password, isadmin) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [firstname, lastname, othername, email, phoneNumber, username, password, false], <span class="fstat-no" title="function not covered" >(</span>err, result) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >			if (err) {</span>
+<span class="cstat-no" title="statement not covered" >				return false;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			return user;</span>
+		});
+	}
+&nbsp;
+	static getUser(user) {
+		const {email, password } = <span class="cstat-no" title="statement not covered" >user;</span>
+<span class="cstat-no" title="statement not covered" >		pool.query('SELECT * FROM users WHERE email = $1', [email], <span class="fstat-no" title="function not covered" >(</span>err, result) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >			if (err) {</span>
+<span class="cstat-no" title="statement not covered" >				return false;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			console.log(result.rows[0]);</span>
+<span class="cstat-no" title="statement not covered" >			return result.rows[0];</span>
+		});
+	}
+}
+&nbsp;
+export default User;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 22 2019 16:08:18 GMT+0200 (GMT+02:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 22 2019 23:24:16 GMT+0200 (GMT+02:00)
 </div>
 </div>
 <script src="..\..\..\prettify.js"></script>

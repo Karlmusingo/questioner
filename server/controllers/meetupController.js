@@ -2,7 +2,6 @@
 /* eslint-disable no-tabs */
 import meetups from '../models/modelMeetups';
 
-
 module.exports = {
 	getAll: (req, res) => {
 		res.status(200).send({

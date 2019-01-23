@@ -11,6 +11,7 @@ const router = Router();
 // meetup's routes
 router.get('/', verifToken, meetupCtrl.getAll);
 router.post('/', verifToken, verifAdmin, meetupCtrl.create);
+router.delete('/:id', verifToken, verifAdmin, meetupCtrl.delete);
 router.get('/upcoming/', verifToken, meetupCtrl.getUpcomingMeetups);
 router.get('/:id', verifToken, meetupCtrl.getById);
 router.get('/:id/questions', verifToken, questionCtrl.getQuestionsForASpecificMeetup);

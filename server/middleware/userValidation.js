@@ -7,7 +7,7 @@ function signupValidation(body) {
     } if (!body.lastname || body.lastname.trim() === '') {
        errors.push('lastname is required');
     } if (body.othername && body.othername.trim() === '') {
-       errors.push('othername is not vadide');
+       errors.push('othername is not vadid');
     } if (!body.email || body.email.trim() === '') {
         errors.push('email is required');
     } if (!body.phoneNumber || body.phoneNumber.trim() === '') {

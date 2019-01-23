@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">21.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>14/14</span>
+        <span class='fraction'>3/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>0/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">21.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/14</span>
+        <span class='fraction'>3/14</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line low'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -78,24 +78,24 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-console */
@@ -104,24 +104,24 @@
 import express from 'express';
 import { json, urlencoded } from 'body-parser';
 import meetupRouter from './server/routes/meetupsRoutes';
-import questionRouter from './server/routes/questionsRoutes';
-import authRouter from './server/routes/authRoutes';
+<span class="cstat-no" title="statement not covered" >import questionRouter from './server/routes/questionsRoutes';</span>
+<span class="cstat-no" title="statement not covered" >import authRouter from './server/routes/authRoutes';</span>
 &nbsp;
-const app = express();
+const app = <span class="cstat-no" title="statement not covered" >express();</span>
 &nbsp;
 &nbsp;
 // Parse incoming requests data
-app.use(json());
-app.use(urlencoded({ extended: false }));
+<span class="cstat-no" title="statement not covered" >app.use(json());</span>
+<span class="cstat-no" title="statement not covered" >app.use(urlencoded({ extended: false }));</span>
 &nbsp;
 &nbsp;
-app.use('/api/v1/meetups/', meetupRouter);
-app.use('/api/v1/questions/', questionRouter);
-app.use('/api/v1/auth/', authRouter);
+<span class="cstat-no" title="statement not covered" >app.use('/api/v1/meetups/', meetupRouter);</span>
+<span class="cstat-no" title="statement not covered" >app.use('/api/v1/questions/', questionRouter);</span>
+<span class="cstat-no" title="statement not covered" >app.use('/api/v1/auth/', authRouter);</span>
 &nbsp;
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =&gt; {
-	console.log(`Server listening on PORT ${PORT}`);
+const PORT = <span class="cstat-no" title="statement not covered" >process.env.PORT || 5000;</span>
+<span class="cstat-no" title="statement not covered" >app.listen(PORT, <span class="fstat-no" title="function not covered" >() =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >	console.log(`Server listening on PORT ${PORT}`);</span>
 });
 export default app;
 &nbsp;</pre></td></tr>
@@ -130,7 +130,7 @@ export default app;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jan 22 2019 23:24:16 GMT+0200 (GMT+02:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 23 2019 15:17:14 GMT+0200 (GMT+02:00)
 </div>
 </div>
 <script src="..\prettify.js"></script>

@@ -8,12 +8,13 @@ import User from '../models/modelUsers';
 module.exports = {
     signup: (req, res) => {
         if (userValidation.signupValidation(req.body).length === 0) {
-            console.log(req.body.password);
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(req.body.password, salt, async (err, hash) => {
                     req.body.password = hash;
+                    if (!req.body.othername) {
+                        req.body.othername = '';
+                    }
                     const user = await User.getUser(req.body.email);
-                    console.log(user);
                     if (!user) {
                         User.create(req.body);
                         return res.status(201).send({

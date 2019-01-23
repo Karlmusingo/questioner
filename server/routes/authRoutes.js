@@ -8,9 +8,4 @@ const router = Router();
 router.post('/signup/', userCtrl.signup);
 router.post('/signin/', userCtrl.signin);
 
-router.get('/', (req, res) => {
-    res.send({
-        message: 'welcome to auth',
-    });
-} );
 export default router;

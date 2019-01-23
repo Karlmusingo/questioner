@@ -4,7 +4,7 @@ import pool from '../config/connection';
 class User {
 	static create(user) {
 		const {
-			firstname, lastname, othername, email, phoneNumber, username, password, isadmin,
+			firstname, lastname, othername, email, phoneNumber, username, password,
 		} = user;
 		pool.query('INSERT INTO users (firstname, lastname, othername, email, phonenumber, username, password, isadmin) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [firstname, lastname, othername, email, phoneNumber, username, password, false], (err, result) => {
 			if (err) {
@@ -27,6 +27,5 @@ class User {
 		});
 	}
 }
-
 
 export default User;

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const rsvpCtrl = require('../controllers/rsvpController');
+import rsvpCtrl from '../controllers/rsvpController';
 
 const router = Router();
 

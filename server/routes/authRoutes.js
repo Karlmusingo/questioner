@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-const userCtrl = require('../controllers/userController');
+import userCtrl from '../controllers/userController';
 
 const router = Router();
 

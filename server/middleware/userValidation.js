@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 
-function signupValidation(body) {
+const signupValidation = (body) => {
     const errors = [];
     if (!body.firstname || body.firstname.trim() === '') {
         errors.push('firstname is required');
@@ -10,6 +10,8 @@ function signupValidation(body) {
        errors.push('othername is not vadid');
     } if (!body.email || body.email.trim() === '') {
         errors.push('email is required');
+    } if (!/\S+@\S+\.\S+/.test(body.email.trim())) {
+        errors.push('The email is not valid');
     } if (!body.phoneNumber || body.phoneNumber.trim() === '') {
        errors.push('phoneNumber is required');
     } if (!body.username || body.username.trim() === '') {
@@ -18,7 +20,7 @@ function signupValidation(body) {
         errors.push('password is required');
     }
     return errors;
-}
+};
 
 function signinValidation(body) {
     const errors = [];
@@ -30,7 +32,7 @@ function signinValidation(body) {
     return errors;
 }
 
-module.exports = {
+export default {
     signupValidation,
     signinValidation,
 };

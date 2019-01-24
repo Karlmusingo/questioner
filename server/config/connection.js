@@ -1,12 +1,22 @@
 /* eslint-disable indent */
 import pg from 'pg';
+import dotenv from 'dotenv';
 
-const config = {
-    user: 'postgres',
-    database: 'questioner',
-    password: '5432',
-    port: 5432,
-};
-const pool = new pg.Pool(config);
+dotenv.config();
 
-module.exports = pool;
+let pool;
+if (process.env.DATABASE_URL) {
+    const connectionString = process.env.DATABASE_URL;
+    pool = new pg.Pool({
+        connectionString,
+    });
+} else {
+    const config = {
+        user: process.env.PGUSER,
+        database: process.env.PGDATABASE,
+        password: process.env.PGPASSWORD,
+        port: process.env.PGPORT,
+    };
+    pool = new pg.Pool(config);
+}
+export default pool;

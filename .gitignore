@@ -1,3 +1,5 @@
 node_modules
 coverage
-.nyc_outputgit 
+.nyc_output
+.env
+ 

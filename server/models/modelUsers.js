@@ -26,6 +26,19 @@ class User {
 			});
 		});
 	}
+
+	static getUserById(id) {
+		return new Promise((resolve, reject) => {
+			pool.query('SELECT * FROM users WHERE id = $1', [id], (err, result) => {
+				if (err) {
+					// return false;
+					reject(err);
+				} else {
+					resolve(result.rows);
+				}
+			});
+		});
+	}
 }
 
 export default User;

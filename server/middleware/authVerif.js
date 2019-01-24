@@ -3,7 +3,7 @@
 import jwt from 'jsonwebtoken';
 import keys from '../config/key';
 
-function verifToken(req, res, next) {
+const verifToken = (req, res, next) => {
 	try {
 		const authorization = req.headers.authorization;
 		const token = authorization.split(' ')[1];
@@ -11,10 +11,11 @@ function verifToken(req, res, next) {
 		req.user = decoded;
 		next();
 	} catch (error) {
-		return res.status(401).json({ 
+		return res.status(401).json({
             status: 401,
             error: 'Auth failed.',
         });
 	}
-}
+};
+
 export default verifToken;

@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs */
-function verifAdmin(req, res, next) {
+const verifAdmin = (req, res, next) => {
 	if (req.user.isadmin === true) {
 		next();
 	} else {
@@ -8,5 +8,5 @@ function verifAdmin(req, res, next) {
 			error: 'Forbidden',
 		});
 	}
-}
+};
 export default verifAdmin;

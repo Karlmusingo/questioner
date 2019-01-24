@@ -1,70 +1,49 @@
 /* eslint-disable no-tabs */
-import users from '../models/modelUsers';
-import meetups from '../models/modelMeetups';
-import rsvps from '../models/modelRsvps';
+import jwt from 'jsonwebtoken';
+import rsvpValidation from '../middleware/rsvpValidation';
+import Meetup from '../models/modelMeetups';
+import Rsvp from '../models/modelRsvps';
+import keys from '../config/key';
 
-module.exports = {
-	create: (req, res) => {
+const create = async (req, res) => {
+	const authorization = req.headers.authorization;
+	const token = authorization.split(' ')[1];
+	const user = jwt.verify(token, keys.secret);
+	if (rsvpValidation(req.body, req.params.id).length === 0) {
 		const id = parseInt(req.params.id, 10);
-		let flag = false;
-
-		// eslint-disable-next-line no-restricted-globals
-		if (isNaN(req.params.id)) {
-			return res.status(400).send({
-				status: 400,
-				error: 'Invalid meetup',
-			});
-		} if (typeof parseInt(req.body.user, 10) !== 'number') {
-			return res.status(400).send({
-				status: 400,
-				error: 'the user property is required in order to send an RSVP',
-			});
-		} if (!(users.find(u => u.id === parseInt(req.body.user, 10)))) {
-			return res.status(400).send({
-				status: 404,
-				error: 'the user  is not found',
-			});
-		} if (!req.body.status || req.body.status.trim() === '') {
-			return res.status(400).send({
-				status: 400,
-				error: 'the status property is required in order to send an RSVP',
-			});
-		} if (!(req.body.status === 'yes' || req.body.status === 'no' || req.body.status === 'maybe')) {
-			return res.status(400).send({
-				status: 400,
-				error: 'invalid value of status',
-			});
+		const errors = [];
+		const meetup = await Meetup.getById(id);
+		if (meetup.length === 0) {
+			errors.push('meetup not found');
 		}
-
-		meetups.forEach((meetup) => {
-			if (meetup.id === id) {
-				flag = true;
-				const rsvp = {
-					id: rsvps.length + 1,
-					meetup: meetup.id,
-					user: parseInt(req.body.user, 10),
-					status: req.body.status,
-				};
-				rsvps.push(rsvp);
-
+		if (errors.length === 0) {
+			const rsvp = await Rsvp.getRsvp(meetup[0].id, user.id);
+			if (rsvp.length === 0) {
+				await Rsvp.create(req.body, id);
 				return res.status(201).send({
 					status: 201,
 					data: [{
-						meetup: rsvp.meetup,
-						topic: meetup.topic,
-						status: rsvp.status,
+						meetup: id,
+						user: user.id,
+						topic: meetup[0].topic,
+						status: req.body.status,
 					}],
 				});
 			}
-		});
-
-		if (!flag) {
-			return res.status(404).send({
-				status: 404,
-				error: 'the meetup id provided is not found',
+			return res.status(401).send({
+				status: 401,
+				error: 'the user cannot rsvp on meetup more than once',
 			});
 		}
-
-		return false;
-	},
+		return res.status(404).send({
+			status: 404,
+			error: errors,
+		});
+	}
+	return res.status(400).send({
+		status: 400,
+		error: rsvpValidation(req.body, req.params.id),
+	});
 };
+
+export default { create };

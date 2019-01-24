@@ -1,4 +1,5 @@
+/* eslint-disable no-tabs */
 const keys = {
-    secret: 'authenticate'
-}
-module.exports = keys;
+	secret: 'authenticate',
+};
+export default keys;

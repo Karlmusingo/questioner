@@ -4,7 +4,6 @@ import pg from 'pg';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 
-
 dotenv.config();
 
 const pool = new pg.Pool({
@@ -23,7 +22,7 @@ bcrypt.genSalt(10, (err, salt) => {
   `;
     });
 });
-const createTablesQuery = `CREATE TABLE public.comments
+const createTablesQuery = `CREATE TABLE comments
         (
             id integer NOT NULL DEFAULT nextval('comments_id_seq'::regclass),
             question integer,
@@ -31,8 +30,9 @@ const createTablesQuery = `CREATE TABLE public.comments
             comment character varying(255) COLLATE pg_catalog."default",
             CONSTRAINT comments_pkey PRIMARY KEY (id)
         );
+        
 
-        CREATE TABLE public.meetups
+        CREATE TABLE meetups
         (
             createdon date NOT NULL DEFAULT CURRENT_DATE,
             location character varying(255) COLLATE pg_catalog."default",
@@ -43,7 +43,7 @@ const createTablesQuery = `CREATE TABLE public.comments
             id integer NOT NULL DEFAULT nextval('meetups_id_seq'::regclass)
         );
 
-        CREATE TABLE public.questions
+        CREATE TABLE questions
         (
             createdon date NOT NULL DEFAULT CURRENT_DATE,
             createdby integer,
@@ -55,7 +55,7 @@ const createTablesQuery = `CREATE TABLE public.comments
             id integer NOT NULL DEFAULT nextval('questions_id_seq'::regclass)
         );
 
-        CREATE TABLE public.rsvps
+        CREATE TABLE rsvps
         (
             id integer NOT NULL DEFAULT nextval('rsvps_id_seq'::regclass),
             meetup integer,
@@ -64,7 +64,7 @@ const createTablesQuery = `CREATE TABLE public.comments
             CONSTRAINT rsvps_pkey PRIMARY KEY (id)
         );
 
-        CREATE TABLE public.users
+        CREATE TABLE users
         (
             firstname character varying(50) COLLATE pg_catalog."default",
             lastname character varying(50) COLLATE pg_catalog."default",
@@ -78,7 +78,7 @@ const createTablesQuery = `CREATE TABLE public.comments
             id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass)
         );
 
-        CREATE TABLE public.votes
+        CREATE TABLE votes
         (
             user_id integer NOT NULL,
             question_id integer NOT NULL,

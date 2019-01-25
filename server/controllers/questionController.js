@@ -59,8 +59,7 @@ const upvote = async (req, res) => {
 						meetup: question[0].meetup,
 						title: question[0].title,
 						body: question[0].body,
-						upvotes: (numberVotes[1]) ? numberVotes[1].number : 0,
-						downvotes: (numberVotes[0]) ? numberVotes[0].number : 0,
+						votes: numberVotes,
 					}],
 				});
 			}
@@ -73,8 +72,7 @@ const upvote = async (req, res) => {
 						meetup: question[0].meetup,
 						title: question[0].title,
 						body: question[0].body,
-						upvotes: (numberVotes[1]) ? numberVotes[1].number : 0,
-						downvotes: (numberVotes[0]) ? numberVotes[0].number : 0,
+						votes: numberVotes,
 					}],
 				});
 			}
@@ -108,8 +106,7 @@ const downvote = async (req, res) => {
 						meetup: question[0].meetup,
 						title: question[0].title,
 						body: question[0].body,
-						upvotes: (numberVotes[1]) ? numberVotes[1].number : 0,
-						downvotes: (numberVotes[0]) ? numberVotes[0].number : 0,
+						votes: numberVotes,
 					}],
 				});
 			}
@@ -122,8 +119,7 @@ const downvote = async (req, res) => {
 						meetup: question[0].meetup,
 						title: question[0].title,
 						body: question[0].body,
-						upvotes: (numberVotes[1]) ? numberVotes[1].number : 0,
-						downvotes: (numberVotes[0]) ? numberVotes[0].number : 0,
+						votes: numberVotes,
 					}],
 				});
 			}

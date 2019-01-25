@@ -23,8 +23,6 @@ const token = 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuY
 describe('POST /api/v1/meetups', () => {
 	it('it should not POST a meetup without location, topic or happeningOn fields', (done) => {
 		const meetup = {
-			id: meetups.length + 1,
-			createdOn: new Date(),
 			topic: 'Intro to Git and GitHub',
 			happeningOn: new Date('10/11/2019'),
 		};
@@ -40,7 +38,7 @@ describe('POST /api/v1/meetups', () => {
 			});
 	});
 
-	it('it should not POST a meetup without with a invalid Date', (done) => {
+	it('it should not POST a meetup with an invalid Date', (done) => {
 		const meetup = {
 			id: meetups.length + 1,
 			createdOn: new Date(),
@@ -138,7 +136,7 @@ describe('GET /api/v1/meetups', () => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
 				res.body.data.should.be.a('array');
-				res.body.data.length.should.be.eql(3);
+				res.body.data.length.should.be.eql(5);
 				done();
 			});
 	});
@@ -157,7 +155,7 @@ describe('GET /api/v1/meetups/upcoming', () => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
 				res.body.data.should.be.a('array');
-				res.body.data.length.should.be.eql(2);
+				res.body.data.length.should.be.eql(5);
 				done();
 			});
 	});
@@ -375,7 +373,6 @@ describe('PATCH /api/v1/questions/:id/downvote', () => {
 			upvotes: 3,
 			downvotes: 1,
 		};
-		meetups.push(question);
 		chai.request(app)
 			.patch(`/api/v1/questions/${question.id + 2}/upvote`)
 			.set('authorization', token)
@@ -414,7 +411,6 @@ describe('POST /meetups/:id/rsvps', () => {
 			user: 1,
 			status: 'yes',
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${5}/rsvps`)
 			.set('authorization', token)
@@ -432,7 +428,6 @@ describe('POST /meetups/:id/rsvps', () => {
 			meetup: 1,
 			user: 1,
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${rsvp.meetup + 2}/rsvps`)
 			.set('authorization', token)
@@ -452,7 +447,6 @@ describe('POST /meetups/:id/rsvps', () => {
 			status: 'yes no maybe',
 			user: 1,
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${rsvp.meetup + 2}/rsvps`)
 			.set('authorization', token)
@@ -472,7 +466,6 @@ describe('POST /meetups/:id/rsvps', () => {
 			status: '   ',
 			user: 1,
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${rsvp.meetup + 2}/rsvps`)
 			.set('authorization', token)
@@ -531,7 +524,6 @@ describe('GET /api/v1/meetups/:id/questions', () => {
 			topic: 'Intro to Git and GitHub',
 			happeningOn: new Date('10/11/2019'),
 		};
-		meetups.push(meetup);
 		const question = {
 			id: questions.length + 1,
 			createdOn: new Date(),
@@ -540,7 +532,6 @@ describe('GET /api/v1/meetups/:id/questions', () => {
 			body: 'I need to know how to host a api on Heroku',
 			votes: 2,
 		};
-		questions.push(question);
 		chai.request(app)
 			.get(`/api/v1/meetups/${1}/questions`)
 			.set('authorization', token)

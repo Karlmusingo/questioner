@@ -2,11 +2,11 @@
 import pool from '../config/connection';
 
 class Question {
-	static create(question, meetupId) {
+	static create(question, user, meetupId) {
 		const {
-			title, body, user,
+			title, body,
 		} = question;
-		pool.query('INSERT INTO questions (title, body, createdBy, meetup) VALUES ($1,$2,$3,$4)', [title, body, parseInt(user, 10), meetupId], (err, result) => {
+		pool.query('INSERT INTO questions (title, body, createdby, meetup) VALUES ($1,$2,$3,$4)', [title, body, parseInt(user, 10), meetupId], (err, result) => {
 			if (err) {
 				return false;
 			}

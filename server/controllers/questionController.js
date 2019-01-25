@@ -18,7 +18,7 @@ const create = async (req, res) => {
 			errors.push('meetup not found');
 		}
 		if (errors.length === 0) {
-			Question.create(req.body, meetupId);
+			Question.create(req.body, user.id, meetupId);
 			return res.status(201).send({
 				status: 201,
 				data: [{

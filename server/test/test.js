@@ -15,19 +15,20 @@ process.env.NODE_ENV = 'test';
 chai.use(chaiHttp);
 chai.should();
 
+const token = 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoiS2FybCIsImxhc3RuYW1lIjoiTVVTSU5HTyIsIm90aGVybmFtZSI6IlpJUklNV0FCQUdCTyIsImVtYWlsIjoia2FybG11c2luZ283N0BnbWFpbC5jb20iLCJwaG9uZU51bWJlciI6IisyNDMgOTc3IDg0OSA5OTUiLCJ1c2VybmFtZSI6ImthcmxtdXNpbmdvIiwicmVnaXN0ZXJlZCI6IjIyLzEyLzIwMTgiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NDgxNTk1Njh9.yqk7_mODz363xnJVSl9bwrg3lOnBW_7qPW09nWduJ9c';
+
 /*
 *Test the POST /api/v1/meetups route
 */
 describe('POST /api/v1/meetups', () => {
 	it('it should not POST a meetup without location, topic or happeningOn fields', (done) => {
 		const meetup = {
-			id: meetups.length + 1,
-			createdOn: new Date(),
 			topic: 'Intro to Git and GitHub',
 			happeningOn: new Date('10/11/2019'),
 		};
 		chai.request(app)
 			.post('/api/v1/meetups')
+			.set('authorization', token)
 			.send(meetup)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -37,7 +38,7 @@ describe('POST /api/v1/meetups', () => {
 			});
 	});
 
-	it('it should not POST a meetup without with a invalid Date', (done) => {
+	it('it should not POST a meetup with an invalid Date', (done) => {
 		const meetup = {
 			id: meetups.length + 1,
 			createdOn: new Date(),
@@ -47,6 +48,7 @@ describe('POST /api/v1/meetups', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups')
+			.set('authorization', token)
 			.send(meetup)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -66,6 +68,7 @@ describe('POST /api/v1/meetups', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups')
+			.set('authorization', token)
 			.send(meetup)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -85,6 +88,7 @@ describe('POST /api/v1/meetups', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups')
+			.set('authorization', token)
 			.send(meetup)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -104,6 +108,7 @@ describe('POST /api/v1/meetups', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups')
+			.set('authorization', token)
 			.send(meetup)
 			.end((err, res) => {
 				res.should.have.status(201);
@@ -126,11 +131,12 @@ describe('GET /api/v1/meetups', () => {
 	it('it should GET all the meetups', (done) => {
 		chai.request(app)
 			.get('/api/v1/meetups')
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
 				res.body.data.should.be.a('array');
-				res.body.data.length.should.be.eql(3);
+				res.body.data.length.should.be.eql(5);
 				done();
 			});
 	});
@@ -144,11 +150,12 @@ describe('GET /api/v1/meetups/upcoming', () => {
 	it('it should GET all upcoming meetups', (done) => {
 		chai.request(app)
 			.get('/api/v1/meetups/upcoming')
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
 				res.body.data.should.be.a('array');
-				res.body.data.length.should.be.eql(2);
+				res.body.data.length.should.be.eql(5);
 				done();
 			});
 	});
@@ -161,6 +168,7 @@ describe('GET /api/v1/meetups/:id', () => {
 	it('it should return an not found error if the id does not exist', (done) => {
 		chai.request(app)
 			.get(`/api/v1/meetups/${meetups.length + 2}`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(404);
 				res.body.status.should.be.eql(404);
@@ -171,6 +179,7 @@ describe('GET /api/v1/meetups/:id', () => {
 	it('it should GET a meetup by the id given', (done) => {
 		chai.request(app)
 			.get(`/api/v1/meetups/${meetups.length}`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
@@ -194,6 +203,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -211,6 +221,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -228,6 +239,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -245,6 +257,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -262,6 +275,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(404);
@@ -280,6 +294,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/10/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(404);
@@ -297,6 +312,7 @@ describe('POST meetups/:id/questions', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/questions')
+			.set('authorization', token)
 			.send(question)
 			.end((err, res) => {
 				res.should.have.status(201);
@@ -319,6 +335,7 @@ describe('PATCH /api/v1/questions/:id/upvote', () => {
 	it('it should return an not found error if the id does not exist', (done) => {
 		chai.request(app)
 			.patch(`/api/v1/questions/${questions.length + 2}/upvote`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(404);
 				res.body.status.should.be.eql(404);
@@ -330,6 +347,7 @@ describe('PATCH /api/v1/questions/:id/upvote', () => {
 	it('it should increase the upvote property for the question specified by :id', (done) => {
 		chai.request(app)
 			.patch('/api/v1/questions/1/upvote')
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
@@ -355,9 +373,9 @@ describe('PATCH /api/v1/questions/:id/downvote', () => {
 			upvotes: 3,
 			downvotes: 1,
 		};
-		meetups.push(question);
 		chai.request(app)
 			.patch(`/api/v1/questions/${question.id + 2}/upvote`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(404);
 				res.body.status.should.be.eql(404);
@@ -369,6 +387,7 @@ describe('PATCH /api/v1/questions/:id/downvote', () => {
 	it('it should increase the downvote property for the question specified by :id', (done) => {
 		chai.request(app)
 			.patch(`/api/v1/questions/${1}/downvote`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);
@@ -392,9 +411,9 @@ describe('POST /meetups/:id/rsvps', () => {
 			user: 1,
 			status: 'yes',
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${5}/rsvps`)
+			.set('authorization', token)
 			.send(rsvp)
 			.end((err, res) => {
 				res.should.have.status(404);
@@ -409,9 +428,9 @@ describe('POST /meetups/:id/rsvps', () => {
 			meetup: 1,
 			user: 1,
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${rsvp.meetup + 2}/rsvps`)
+			.set('authorization', token)
 			.send(rsvp)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -428,9 +447,9 @@ describe('POST /meetups/:id/rsvps', () => {
 			status: 'yes no maybe',
 			user: 1,
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${rsvp.meetup + 2}/rsvps`)
+			.set('authorization', token)
 			.send(rsvp)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -447,9 +466,9 @@ describe('POST /meetups/:id/rsvps', () => {
 			status: '   ',
 			user: 1,
 		};
-		rsvps.push(rsvp);
 		chai.request(app)
 			.post(`/api/v1/meetups/${rsvp.meetup + 2}/rsvps`)
+			.set('authorization', token)
 			.send(rsvp)
 			.end((err, res) => {
 				res.should.have.status(400);
@@ -468,6 +487,7 @@ describe('POST /meetups/:id/rsvps', () => {
 		};
 		chai.request(app)
 			.post('/api/v1/meetups/1/rsvps')
+			.set('authorization', token)
 			.send(rsvp)
 			.end((err, res) => {
 				res.should.have.status(201);
@@ -488,6 +508,7 @@ describe('GET /api/v1/meetups/:id/questions', () => {
 	it('it should return a not found error when the meetup id is not found', (done) => {
 		chai.request(app)
 			.get(`/api/v1/meetups/${20}/questions/`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(404);
 				res.body.status.should.be.eql(404);
@@ -503,7 +524,6 @@ describe('GET /api/v1/meetups/:id/questions', () => {
 			topic: 'Intro to Git and GitHub',
 			happeningOn: new Date('10/11/2019'),
 		};
-		meetups.push(meetup);
 		const question = {
 			id: questions.length + 1,
 			createdOn: new Date(),
@@ -512,9 +532,9 @@ describe('GET /api/v1/meetups/:id/questions', () => {
 			body: 'I need to know how to host a api on Heroku',
 			votes: 2,
 		};
-		questions.push(question);
 		chai.request(app)
 			.get(`/api/v1/meetups/${1}/questions`)
+			.set('authorization', token)
 			.end((err, res) => {
 				res.should.have.status(200);
 				res.body.status.should.be.eql(200);

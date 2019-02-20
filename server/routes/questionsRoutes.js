@@ -1,11 +1,14 @@
 import { Router } from 'express';
-
-const questionCtrl = require('../controllers/questionController');
+import verifToken from '../middleware/authVerif';
+import questionCtrl from '../controllers/questionController';
+import commentCtrl from '../controllers/comment';
 
 const router = Router();
 
 
-router.patch('/:id/upvote', questionCtrl.upvote);
-router.patch('/:id/downvote', questionCtrl.downvote);
+router.patch('/:id/upvote', verifToken, questionCtrl.upvote);
+router.patch('/:id/downvote', verifToken, questionCtrl.downvote);
+router.post('/:id/comments', verifToken, commentCtrl.create);
+router.get('/:id/comments', verifToken, commentCtrl.getComments);
 
 export default router;

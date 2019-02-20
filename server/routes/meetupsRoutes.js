@@ -1,18 +1,21 @@
 import { Router } from 'express';
+import verifToken from '../middleware/authVerif';
+import verifAdmin from '../middleware/verifAdmin';
 
-const meetupCtrl = require('../controllers/meetupController');
-const questionCtrl = require('../controllers/questionController');
-const rsvpCtrl = require('../controllers/rsvpController');
+import meetupCtrl from '../controllers/meetupController';
+import questionCtrl from '../controllers/questionController';
+import rsvpCtrl from '../controllers/rsvpController';
 
 const router = Router();
 
 // meetup's routes
-router.get('/', meetupCtrl.getAll);
-router.post('/', meetupCtrl.create);
-router.get('/upcoming/', meetupCtrl.getUpcomingMeetups);
-router.get('/:id', meetupCtrl.getById);
-router.get('/:id/questions', questionCtrl.getQuestionsForASpecificMeetup);
-router.post('/:id/questions', questionCtrl.create);
-router.post('/:id/rsvps', rsvpCtrl.create);
+router.get('/', verifToken, meetupCtrl.getAll);
+router.post('/', verifToken, verifAdmin, meetupCtrl.create);
+router.delete('/:id', verifToken, verifAdmin, meetupCtrl.deleteMeetup);
+router.get('/upcoming/', verifToken, meetupCtrl.getUpcomingMeetups);
+router.get('/:id', verifToken, meetupCtrl.getById);
+router.get('/:id/questions', verifToken, questionCtrl.getQuestionsForASpecificMeetup);
+router.post('/:id/questions', verifToken, questionCtrl.create);
+router.post('/:id/rsvps', verifToken, rsvpCtrl.create);
 
 export default router;

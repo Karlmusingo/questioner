@@ -1,102 +1,103 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-tabs */
-import meetups from '../models/modelMeetups';
+import Meetup from '../models/modelMeetups';
+import meetupValidation from '../middleware/meetupValidation';
 
 
-module.exports = {
-	getAll: (req, res) => {
+const getAll = async (req, res) => {
+	const meetups = await Meetup.getAll();
+	if (meetups) {
 		res.status(200).send({
 			status: 200,
 			data: meetups,
 		});
-	},
-
-	create: (req, res) => {
-		if (!req.body.location || req.body.location.trim() === '') {
-			return res.status(400).send({
-				status: 400,
-				error: 'location property is required for the meetup',
-			});
-		} if (!req.body.topic || req.body.topic.trim() === '') {
-			return res.status(400).send({
-				status: 400,
-				error: 'topic property is required for the meetup',
-			});
-		} if (!req.body.happeningOn || req.body.happeningOn.trim() === '') {
-			return res.status(400).send({
-				status: 400,
-				error: 'happeningOn property is required for the meetup',
-			});
-		} if ((new Date(req.body.happeningOn.trim())) <= (new Date())) {
-			return res.status(400).send({
-				status: 400,
-				error: 'happeningOn must come after today',
-			});
-		} if (isNaN(new Date(req.body.happeningOn.trim()))) {
-			return res.status(400).send({
-				status: 400,
-				error: 'happeningOn is not a valide Date',
-			});
-		}
-
-		// if(errors){
-		// 	return res.status(400).send({
-		// 		status: 400,
-		// 		error: errors,
-		// 	});
-		// }
-
+	} else {
+		res.status(500).send({
+			status: 500,
+			error: 'server error',
+		});
+	}
+};
+const create = (req, res) => {
+	if (meetupValidation(req.body).length === 0) {
 		const meetup = {
-			id: meetups.length + 1,
-			createdOn: new Date(),
 			location: req.body.location.trim(),
 			topic: req.body.topic.trim(),
 			happeningOn: new Date(req.body.happeningOn),
-			tags: req.body.tags,
+			tags: (req.body.tags) ? req.body.tags : [],
+			images: (req.body.images) ? req.body.images : [],
 		};
-		meetups.push(meetup);
-		return res.status(201).send({
+		Meetup.create(meetup);
+		res.status(201).send({
 			status: 201,
 			data: [meetup],
 		});
-	},
-
-	getById: (req, res) => {
-		const id = parseInt(req.params.id, 10);
-		let flag = false;
-
-		meetups.forEach((meetup) => {
-			if (meetup.id === id) {
-				flag = true;
-				return res.status(200).send({
-					status: 200,
-					data: [{
-						id: meetup.id,
-						topic: meetup.topic,
-						location: meetup.location,
-						happeningOn: meetup.happeningOn,
-						tags: meetup.tags,
-					}],
-				});
-			}
+	} else {
+		res.status(400).send({
+			status: 400,
+			error: meetupValidation(req.body),
 		});
+	}
+};
 
-		if (!flag) {
-			return res.status(404).send({
-				status: 404,
-				error: 'meetup not found',
+const getById = async (req, res) => {
+	if (!isNaN(req.params.id)) {
+		const id = parseInt(req.params.id, 10);
+		const meetup = await Meetup.getById(id);
+		if (meetup.length !== 0) {
+			return res.status(200).send({
+				status: 200,
+				data: meetup,
 			});
 		}
-	},
-
-	getUpcomingMeetups: (req, res) => {
-		const today = new Date();
-		const upcomings = [];
-		meetups.forEach((meetup) => {
-			if (meetup.happeningOn > today) {
-				upcomings.push(meetup);
-			}
+		return res.status(404).send({
+			status: 404,
+			error: 'meetup not found',
 		});
+	}
+	return res.status(400).send({
+		status: 400,
+		error: 'invalid meetup id',
+	});
+};
+
+const getUpcomingMeetups = async (req, res) => {
+	const upcomings = await Meetup.getUpcoming();
+	if (upcomings) {
 		return res.status(200).send({ status: 200, data: upcomings });
-	},
+	}
+	return res.status(500).send({
+		status: 500,
+		error: 'server error!',
+	});
+};
+
+const deleteMeetup = async (req, res) => {
+	if (!isNaN(req.params.id)) {
+		const id = parseInt(req.params.id, 10);
+		const meetup = await Meetup.getById(id);
+		if (meetup.length !== 0) {
+			Meetup.delete(id);
+			return res.status(200).send({
+				status: 200,
+				data: ['meetup deleted successfully!'],
+			});
+		}
+		return res.status(404).send({
+			status: 404,
+			error: 'meetup not found',
+		});
+	}
+	return res.status(400).send({
+		status: 400,
+		error: 'invalid meetup id',
+	});
+};
+
+export default {
+	getAll,
+	create,
+	getById,
+	getUpcomingMeetups,
+	deleteMeetup,
 };

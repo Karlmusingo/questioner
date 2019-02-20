@@ -87,10 +87,10 @@ const createTablesQuery = `CREATE TABLE comments
         );`;
 
 const migrateDb = () => new Promise(async (resolve) => {
-    const connection = await connect();
-    await connection.query(createTablesQuery);
-    await connection.query(adminQuery);
-    connection.release();
+    // const connection = await connect();
+    // await connection.query(createTablesQuery);
+    // await connection.query(adminQuery);
+    // connection.release();
     resolve();
 });
 migrateDb();

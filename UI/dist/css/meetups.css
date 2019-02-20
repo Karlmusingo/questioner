@@ -33,11 +33,17 @@ header nav{
   font-family: "Coiny";
   color: #fff;
 }
+
+.admin {
+  font-size: none;
+  margin-top: -20px;
+}
 header li{
   float: left;
   margin: 10px;
 }
 header a{
+  cursor: pointer;
   color: #fff;
 }
 

@@ -15,9 +15,17 @@ const signup = async (req, res) => {
                 }
                 const user = await User.getUser(req.body.email);
                 if (!user) {
-                    User.create(req.body);
+                    await User.create(req.body);
+                    const userSignedUp = await User.getUser(req.body.email);
+                    const userLoggedIn = {
+                        id: userSignedUp.id,
+                        username: userSignedUp.username,
+                        email: userSignedUp.email,
+                        isAdmin: userSignedUp.isadmin,
+                    };
                     return res.status(201).send({
                         status: 201,
+                        token: `bearer ${jwt.sign(userLoggedIn, keys.secret)}`,
                         data: [{
                             firstname: req.body.firstname,
                             lastname: req.body.lastname,

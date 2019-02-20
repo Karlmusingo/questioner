@@ -1,6 +1,6 @@
 # questioner
 
-[![Build Status](https://travis-ci.com/Karlmusingo/questioner.svg?branch=develop)](https://travis-ci.com/Karlmusingo/questioner)
+[![Build Status](https://travis-ci.com/Karlmusingo/questioner.svg?branch=develop)](https://travis-ci.com/Karlmusingo/questioner) [![Coverage Status](https://coveralls.io/repos/github/Karlmusingo/questioner/badge.svg?branch=develop)](https://coveralls.io/github/Karlmusingo/questioner?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/7cbcf31cc93ac10ac22f/maintainability)](https://codeclimate.com/github/Karlmusingo/questioner/maintainability)
 
 Questioner helps the meetup organizer prioritize questions to be answered. Other users can vote on asked questions and they bubble to the top or bottom of the log.
 
@@ -12,7 +12,7 @@ Questioner helps the meetup organizer prioritize questions to be answered. Other
 # Installation
 ```
 
-git clone https://github.com/Inclet/questioner.git
+git clone https://github.com/Karlmusingo/questioner.git
 
 cd questioner
 

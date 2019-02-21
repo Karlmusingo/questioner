@@ -2,6 +2,7 @@
 /* eslint-disable no-tabs */
 // Set up the express app
 import express from 'express';
+import path from 'path';
 import { json, urlencoded } from 'body-parser';
 
 import meetupRouter from './server/routes/meetupsRoutes';
@@ -15,6 +16,18 @@ const app = express();
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
+// allowing the UI to consume my APIs
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Origin, X-Requested-With, Content-Type, Accept',
+	);
+	next();
+});
+
+// load static pages html and css
+app.use(express.static(path.join(__dirname, './UI')));
 
 app.use('/api/v1/meetups/', meetupRouter);
 app.use('/api/v1/questions/', questionRouter);

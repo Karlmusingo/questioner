@@ -13,11 +13,11 @@ const pool = new pg.Pool({
 const connect = async () => pool.connect();
 let adminQuery;
 bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash('karlmusingo', salt, async (err, hash) => {
+    bcrypt.hash('karlmusingo', salt, async (error, hash) => {
         adminQuery = `INSERT INTO users(
         firstname, lastname, othername, phonenumber, username, email, password, isAdmin
     ) VALUES (
-        'karl', 'musingo', 'marx', '0977849995', 'karlmusingo', 'karlmusingo77@gmail.com', ${ hash }, true
+        'karl', 'musingo', 'marx', '0977849995', 'karlmusingo', 'karlmusingo77@gmail.com', ${hash}, true
     );
   `;
     });

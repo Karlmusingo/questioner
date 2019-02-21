@@ -84,7 +84,7 @@ header a{
 }
 @media screen and (max-width:768px) {
   .m-question{
-    width: 100%;
+    width: 96%;
     padding-top: 90px;
     clear: both;
   }

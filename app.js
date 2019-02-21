@@ -2,10 +2,7 @@
 /* eslint-disable no-tabs */
 // Set up the express app
 import express from 'express';
-<<<<<<< HEAD
-=======
 import path from 'path';
->>>>>>> develop
 import { json, urlencoded } from 'body-parser';
 
 import meetupRouter from './server/routes/meetupsRoutes';

@@ -1,144 +1,164 @@
-const db = require('../models/db.js');
+/* eslint-disable no-tabs */
+import jwt from 'jsonwebtoken';
+import questionValidation from '../middleware/questionValidation';
+import Question from '../models/modelQuestions';
+import Meetup from '../models/modelMeetups';
+import Vote from '../models/Votes';
+import keys from '../config/key';
 
-module.exports = {
-	create:(req,res)=>{
-		if(!req.body.title){
-			return res.status(400).send({
-				status: 400,
-				error: 'the title property is required'
-			});
-		} else if (!req.body.body) {
-			return res.status(400).send({
-				status: 400,
-				error: 'the body property is required'
-			});
-		} else if (!req.body.user) {
-			return res.status(400).send({
-				status: 400,
-				error: 'the user property is required'
-			});
-		} else if(req.body.user > db.users.length){
-			return res.status(404).send({
-				status: 404,
-				error: 'the user does not exist'
-			});
-		} else if(req.params.id > db.meetups.length){
-			return res.status(404).send({
-				status: 404,
-				error: 'the meetup does not exist'
+const create = async (req, res) => {
+	const authorization = req.headers.authorization;
+	const token = authorization.split(' ')[1];
+	const user = jwt.verify(token, keys.secret);
+	if (questionValidation(req.body, req.params.id).length === 0) {
+		const errors = [];
+		const meetupId = parseInt(req.params.id, 10);
+		const meetup = await Meetup.getById(meetupId);
+		if (meetup.length === 0) {
+			errors.push('meetup not found');
+		}
+		if (errors.length === 0) {
+			Question.create(req.body, user.id, meetupId);
+			return res.status(201).send({
+				status: 201,
+				data: [{
+					user: user.id,
+					meetup: meetupId,
+					title: req.body.title,
+					body: req.body.body,
+				}],
 			});
 		}
-
-		const question = {
-			id: db.questions.length + 1,
-			createdOn : new Date(),
-			title: req.body.title,
-			body: req.body.body,
-			upvotes: 0,
-			downvotes: 0,
-			user: parseInt(req.body.user),
-			meetup: parseInt(req.params.id)
-		};
-
-		db.questions.push(question);
-
-		return res.status(201).send({
-			status: 201,
-			data:[{
-				user: question.user,
-				meetup: question.meetup,
-				title: question.title,
-				body: question.body
-			}]
+		return res.status(404).send({
+			status: 404,
+			error: errors,
 		});
-	},
-
-	upvote: (req, res) => {
-		const id = parseInt(req.params.id, 10);
-		let flag = false;
-		db.questions.forEach(function (question) {
-			if (question.id === id) {
-				question.upvotes += 1;
-				flag = true;
-				return res.status(200).send({
-					status: 200,
-					data:[{
-						meetup: question.meetup,
-						title: question.title,
-						body: question.body,
-						upvotes: question.upvotes,
-						downvotes: question.downvotes
-					}]
-				});
-			}
+	} else {
+		return res.status(400).send({
+			status: 400,
+			error: questionValidation(req.body, req.params.id),
 		});
-		if(!flag){
-			return res.status(404).send({
-				status: 404,
-				error: 'the question id is not found'
-			});
-		}
-		
-	}, 
-
-	downvote: (req, res) => {
-		const id = parseInt(req.params.id, 10);
-		let flag = false;
-		db.questions.forEach(function (question) {
-			if (question.id === id) {
-				question.downvotes += 1;
-				flag = true;
-				return res.status(200).send({
-					status: 200,
-					data:[{
-						meetup: question.meetup,
-						title: question.title,
-						body: question.body,
-						upvotes: question.upvotes,
-						downvotes: question.downvotes
-					}]
-				});
-			}
-
-		});
-		if(!flag){
-			return res.status(404).send({
-				status: 404,
-				error: 'the question id is not found'
-			});
-		}
-	},
-
-	getQuestionsForASpecificMeetup: (req, res) => {
-
-		const id = parseInt(req.params.id, 10);
-		let flag = false;
-		db.meetups.forEach(function (meetup) {
-			if(meetup.id === id){
-				const data = [];
-				flag = true;
-				db.questions.forEach(function (question) {
-
-					if(question.meetup === meetup.id){
-						data.push(question);
-					}
-				});
-				return res.status(200).send({
-					status: 200,
-					data: data
-				});
-			}
-		});
-
-		if (!flag) {
-			return res.status(404).send({
-				status: 404,
-				error : 'the meetup is not found'
-			});
-		}
-		
-		
 	}
+};
 
+const upvote = async (req, res) => {
+	const authorization = req.headers.authorization;
+	const token = authorization.split(' ')[1];
+	const user = jwt.verify(token, keys.secret);
+	if (!isNaN(req.params.id)) {
+		const id = parseInt(req.params.id, 10);
+		const question = await Question.getById(id);
+		if (question.length !== 0) {
+			const vote = await Vote.getVote(user.id, id);
+			if (vote.length === 0) {
+				await Vote.create(user.id, id, 'upvote');
+				const numberVotes = await Vote.getNumberVotes(question[0].id);
+				return res.status(200).send({
+					status: 200,
+					data: [{
+						meetup: question[0].meetup,
+						title: question[0].title,
+						body: question[0].body,
+						votes: numberVotes,
+					}],
+				});
+			}
+			if (vote[0].status !== 'upvote') {
+				await Vote.update(vote[0].user_id, vote[0].question_id, 'upvote');
+				const numberVotes = await Vote.getNumberVotes(vote[0].question_id);
+				return res.status(200).send({
+					status: 200,
+					data: [{
+						meetup: question[0].meetup,
+						title: question[0].title,
+						body: question[0].body,
+						votes: numberVotes,
+					}],
+				});
+			}
+			return res.status(401).send({
+				status: 401,
+				error: 'the user cannot upvote the question more than once!',
+			});
+		}
+	}
+	return res.status(400).send({
+		status: 400,
+		error: 'the question id is not valid',
+	});
+};
 
-}
+const downvote = async (req, res) => {
+	const authorization = req.headers.authorization;
+	const token = authorization.split(' ')[1];
+	const user = jwt.verify(token, keys.secret);
+	if (!isNaN(req.params.id)) {
+		const id = parseInt(req.params.id, 10);
+		const question = await Question.getById(id);
+		if (question.length !== 0) {
+			const vote = await Vote.getVote(user.id, id);
+			if (vote.length === 0) {
+				await Vote.create(user.id, id, 'downvote');
+				const numberVotes = await Vote.getNumberVotes(question[0].id);
+				return res.status(200).send({
+					status: 200,
+					data: [{
+						meetup: question[0].meetup,
+						title: question[0].title,
+						body: question[0].body,
+						votes: numberVotes,
+					}],
+				});
+			}
+			if (vote[0].status !== 'downvote') {
+				await Vote.update(vote[0].user_id, vote[0].question_id, 'downvote');
+				const numberVotes = await Vote.getNumberVotes(vote[0].question_id);
+				return res.status(200).send({
+					status: 200,
+					data: [{
+						meetup: question[0].meetup,
+						title: question[0].title,
+						body: question[0].body,
+						votes: numberVotes,
+					}],
+				});
+			}
+			return res.status(401).send({
+				status: 401,
+				error: 'the user cannot downvote the question more than once!',
+			});
+		}
+	}
+	return res.status(400).send({
+		status: 400,
+		error: 'the question id is not valid',
+	});
+};
+
+const getQuestionsForASpecificMeetup = async (req, res) => {
+	if (!isNaN(req.params.id)) {
+		const meetupId = parseInt(req.params.id, 10);
+		const questions = await Question.getAll(meetupId);
+		if (questions.length !== 0) {
+			return res.status(200).send({
+				status: 200,
+				data: questions,
+			});
+		}
+		return res.status(404).send({
+			status: 404,
+			error: 'the meetup does not have questions',
+		});
+	}
+	return res.status(400).send({
+		status: 400,
+		error: 'the meetup id is not valid',
+	});
+};
+
+export default {
+	create,
+	upvote,
+	downvote,
+	getQuestionsForASpecificMeetup,
+};

@@ -26,14 +26,7 @@ const signup = async (req, res) => {
                     return res.status(201).send({
                         status: 201,
                         token: `bearer ${jwt.sign(userLoggedIn, keys.secret)}`,
-                        data: [{
-                            firstname: req.body.firstname,
-                            lastname: req.body.lastname,
-                            othername: req.body.othername,
-                            email: req.body.email,
-                            phoneNumber: req.body.phoneNumber,
-                            username: req.body.username,
-                        }],
+                        data: [userLoggedIn],
                     });
                 }
                 return res.status(400).send({

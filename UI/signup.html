@@ -11,7 +11,7 @@
     <div>
         <div >
             
-            <form method="POST">
+            <form id="signup_form" method="POST">
                 <fieldset>
                     <div >
                         <h2>Inscription</h2>
@@ -35,7 +35,7 @@
                         </div>
                         
                         <div class="input-group">
-                            <input type="text" class="input" required name='phonenumber' placeholder="Phone Number" />
+                            <input type="text" class="input" required name='phoneNumber' placeholder="Phone Number" />
                         </div>
                         
                         <div class="input-group">
@@ -49,10 +49,10 @@
                         <div class="input-group">
                             <input type="password" class="input" required name='confirm' placeholder="confirm your password" />
                         </div>
-                        
+                        <p id="signup_error"></p>
                         <div class="register">
                             
-                            <button  type="submit" name="signup" value="signup">Sign up</button> 
+                            <button id="signup_btn" type="submit" name="signup" value="signup">Sign up</button> 
                             <a href="./">I have an account</a> 
                         </div>
                     </div>
@@ -62,6 +62,6 @@
         </div>
         
     </div>
-    
+    <script type="module" src="./dist/js/auth/signup.mjs"></script>
 </body>
 </html>

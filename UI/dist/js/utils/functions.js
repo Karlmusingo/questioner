@@ -12,4 +12,13 @@ const formToJson = (form) => {
 	return JSON.stringify(data);
 };
 
-export { getById, formToJson };
+const formToObject = (form) => {
+	const formData = new FormData(form);
+	const data = {};
+	formData.forEach((value, key) => {
+		data[key] = value;
+	});
+	return data;
+};
+
+export { getById, formToJson, formToObject };

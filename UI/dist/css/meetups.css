@@ -83,7 +83,8 @@ header a{
 }
 
 .m-footer i{
-	float: right;
+  float: right;
+  color: red;
 }
 
 .m-footer img{

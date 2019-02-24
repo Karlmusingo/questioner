@@ -37,21 +37,22 @@
 	<!-- create tab -->
 	<div id="create" class="tabcontent">
 		<h2 align="center">Create a meetup</h2>
-		<form method="POST" class="form">
+		<form id="create_meetup_form" method="POST" class="form">
 			<div>
 				<label>Topic:</label><br/>
-				<input type="type" name="topic" placeholder="Topic">
+				<input type="type" required name="topic" placeholder="Topic">
 			</div>
 			<div>
 				<label>Location:</label><br/>
-				<input type="text" name="location" placeholder="Location">
+				<input type="text" required name="location" placeholder="Location">
 			</div>
 			<div>
 				<label>Date of the meetup :</label><br/>
-				<input type="date" name="happeningOn">
+				<input type="date" required name="happeningOn">
 			</div>
+			<p id="create_meetup_error"></p>
 			<div>
-				<button type="submit" name="save">Save</button>
+				<button id="create_meetup_btn" type="submit" name="save">Save</button>
 			</div>
 		</form>
 	</div>
@@ -101,5 +102,6 @@
 
 	</div>
 	<script src="dist/js/script.js" type="text/javascript"></script>
+	<script type="module" src="dist/js/meetups/create_meetup.mjs"></script>
 </body>
 </html>

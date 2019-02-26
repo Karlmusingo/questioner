@@ -13,7 +13,7 @@ const login = (event) => {
 	fetchApi('/auth/signin', 'POST', dataJson)
 		.then(async (data) => {
 			await localStorage.setItem('token', data.token);
-			await localStorage.setItem('user', data.data[0]);
+			await localStorage.setItem('user', JSON.stringify(data.data[0]));
 			if (data.data[0].isAdmin) {
 				window.location = '/admin_page.html';
 			} else {

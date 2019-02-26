@@ -15,7 +15,7 @@ const createMeetup = async (event) => {
 	const token = await localStorage.getItem('token');
 	if (user && token) {
 		fetchApi('/meetups', 'POST', dataJson, token)
-			.then(async (data) => {
+			.then(async () => {
 				getById('create_meetup_error').style.cssText = 'display:block;color:green;';
 				getById('create_meetup_error').innerHTML = 'Meetup saved successfully...';
 				createMeetupForm.reset();

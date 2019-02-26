@@ -47,8 +47,6 @@ const getAllMeetups = async () => {
 	}
 };
 
-// const deleteBtn = document.getElementsByClassName('btn-small delete');
-
 const deleteMeetup = async (event) => {
 	event.preventDefault();
 
@@ -62,7 +60,7 @@ const deleteMeetup = async (event) => {
 		if (!event.target.matches('.btn-small')) return;
 		getById(event.target.id).innerText = 'Deleting...';
 		fetchApi(`/meetups/${event.target.id}`, 'DELETE', undefined, token)
-			.then(async (data) => {
+			.then(() => {
 				meetupToBeDeleted.removeChild(meetupChildToBeDeleted);
 				// getById('delete_message').style.cssText = 'display:block;color:green;';
 				// getById('delete_message').innerHTML = data.data[0];

@@ -15,8 +15,7 @@ const signup = async (req, res) => {
                 }
                 const user = await User.getUser(req.body.email);
                 if (!user) {
-                    await User.create(req.body);
-                    const userSignedUp = await User.getUser(req.body.email);
+                    const userSignedUp = await User.create(req.body);
                     const userLoggedIn = {
                         id: userSignedUp.id,
                         username: userSignedUp.username,

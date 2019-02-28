@@ -14,7 +14,7 @@ const login = (event) => {
 		.then(async (data) => {
 			await localStorage.setItem('token', data.token);
 			await localStorage.setItem('user', JSON.stringify(data.data[0]));
-			if (data.data[0].isAdmin) {
+			if (data.data[0].isAdmin === true) {
 				window.location = '/admin_page.html';
 			} else {
 				window.location = '/meetups.html';

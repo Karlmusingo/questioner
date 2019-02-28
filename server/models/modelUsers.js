@@ -4,14 +4,19 @@ import pool from '../config/connection';
 class User {
 	static create(user) {
 		const {
-			firstname, lastname, othername, email, phoneNumber, username, password,
+			firstname, lastname, othername, email, phoneNumber, username, password, isAdmin,
 		} = user;
-		pool.query('INSERT INTO users (firstname, lastname, othername, email, phonenumber, username, password, isadmin) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)', [firstname, lastname, othername, email, phoneNumber, username, password, false], (err, result) => {
-			if (err) {
-				return false;
-			}
-			return user;
-		});
+		return new Promise((resolve,reject)=>{
+	  pool.query('INSERT INTO users (firstname, lastname, othername, email, phonenumber, username, password, isadmin) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) returning *', [firstname, lastname, othername, email, phoneNumber, username, password, isAdmin], (err, result) => {
+				if (err) {
+					//console.log(err);
+					reject(err);
+				}
+				//return result.rows;
+				resolve(result.rows[0]);
+			});
+		})
+		
 	}
 
 	static getUser(email) {

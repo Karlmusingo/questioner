@@ -8,10 +8,13 @@ import User from '../models/modelUsers';
 const signup = async (req, res) => {
     if (userValidation.signupValidation(req.body).length === 0) {
         bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(req.body.password, salt, async (err, hash) => {
+            bcrypt.hash(req.body.password, salt, async (error, hash) => {
                 req.body.password = hash;
                 if (!req.body.othername) {
                     req.body.othername = '';
+                }
+                if (!req.body.isAdmin) {
+                    req.body.isAdmin = false;
                 }
                 const user = await User.getUser(req.body.email);
                 if (!user) {
